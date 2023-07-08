@@ -1,0 +1,58 @@
+﻿@model List<Category>
+@{
+    ViewData["Title"] = "All Categories";
+    string imagePath = "";
+}
+<h2 class="title">Categories</h2>
+    @if (User.IsInRole("Admin"))
+    {
+        <a class="btn btn-outline-secondary" asp-action="Create">Add New Category</a>
+
+    }
+<a class="btn btn-outline-secondary" asp-action="Create">Add New Category</a>
+<hr />
+@if (Model.Any())
+{ 
+  
+    <div class="row content">
+       
+        @for (int i = 0; i < Model.Count; ++i)
+        {
+            imagePath = CategoryController.CategoryPhotoRootPath + Model[i].ImageURL;
+                    <div class="carddd">
+                        <div class="info">
+                            <h3>@Model[i].Name</h3>
+
+                        </div>
+                        <div class="project-image">
+                            <img class="carddd-icon" src="@imagePath" asp-append-version="true"  />
+                        </div>
+                        <div class="info">
+                            <p>@Model[i].Description</p>
+                        </div>
+                    <div class="justify-content-between">
+                            <a asp-action="Details" asp-route-id="@Model[i].Id" class="btn btn-primary">Details</a>
+                            <a asp-action="ViewAllProducts" asp-route-id="@Model[i].Id" class="btn btn-primary">View All</a>
+                        @*@if (User.IsInRole("Admin"))
+                        {*@
+                            <a asp-action="Edit" asp-route-id="@Model[i].Id" class="btn btn-primary">Edit</a>
+                            <a asp-action="Delete"
+                        onclick="return confirm('Are you sure you want to delete @Model[i].Name ?')" 
+                        class="btn btn-danger"
+                                asp-route-id="@Model[i].Id">Delete</a>
+                        @*}*@
+                        
+                        </div>
+            </div>
+        
+        }
+        </div>
+
+}
+else
+{
+    <div class="p-2">
+        <h2 class="alert-warning"> No Categories Found !</h2>
+    </div>
+}
+
