@@ -31,11 +31,11 @@
                             <p>@Model[i].Description</p>
                         </div>
                     <div class="justify-content-between">
-                            <a asp-action="Details" asp-route-id="@Model[i].Id" class="btn btn-primary">Details</a>
-                            <a asp-action="ViewAllProducts" asp-route-id="@Model[i].Id" class="btn btn-primary">View All</a>
+                            <a asp-action="Details" asp-route-id="@Model[i].Id" class="btn btn-secondary">Details</a>
+                            <a asp-action="ViewAllProducts" asp-route-id="@Model[i].Id" class="btn btn-secondary">View All</a>
                         @*@if (User.IsInRole("Admin"))
                         {*@
-                            <a asp-action="Edit" asp-route-id="@Model[i].Id" class="btn btn-primary">Edit</a>
+                            <a asp-action="Edit" asp-route-id="@Model[i].Id" class="btn btn-secondary">Edit</a>
                             <a asp-action="Delete"
                         onclick="return confirm('Are you sure you want to delete @Model[i].Name ?')" 
                         class="btn btn-danger"

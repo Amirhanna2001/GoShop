@@ -38,7 +38,7 @@ public class CategoryServices : ICategoryServices
     }
 
     public async Task<List<Product>> GetProducts(int id)
-         => (await _context.Products.Where(p => p.CategoryID == id).ToListAsync());
+         => (await _context.Products.Where(p => p.CategoryID == id).Include(p=>p.Category).ToListAsync());
 
 
     public Category Update(Category category)

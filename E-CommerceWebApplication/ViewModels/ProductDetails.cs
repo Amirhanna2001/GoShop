@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
-namespace MyPortfolio.ViewModels;
-public class ProducttDetails
+namespace E_CommerceWebApplication.ViewModels;
+public class ProductDetails
 {
     public int ID { get; set; }
     public string Name { get; set; }

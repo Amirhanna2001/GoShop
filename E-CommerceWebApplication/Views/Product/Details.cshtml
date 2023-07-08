@@ -1,0 +1,32 @@
+﻿@model ProductDetails
+
+@{
+    ViewData["title"] = "Projects Details";
+}
+<div>
+    @*imagePath = "Images/" + Model[i].ImageURL;*@
+    <div class="card-header">
+        @Model.Name
+    </div>
+    <div class="card-body text-center">
+        <img class="card-icon" src="@Model.ImageURL" asp-append-version="true" style="width:30em;height:20em;" />
+
+
+        <h4>
+            Date: @Model.CreatedOn.ToString("dd/MM/yyyy")<h4>
+        <h4>@Model.Description<h4> 
+
+    </div>
+    <div class="card-footer text-center justify-content-between">
+        <a asp-action="index" asp-controller="Home" class="btn btn-primary">Home</a>
+        <a href="#" class="btn btn-primary">Out Source Link</a>
+        @if (User.IsInRole("Admin"))
+        {
+            <a asp-action="edit" asp-route-id="@Model.ID" class="btn btn-primary">Edit</a>
+            <a asp-action="delete"
+               onclick="return confirm('Are You Sure You Want To Delete @Model.Name ?')"
+               asp-route-id="@Model.ID" class="btn btn-danger">Delete</a>
+        }
+        
+    </div>
+</div>

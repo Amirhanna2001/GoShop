@@ -1,8 +1,5 @@
-﻿using E_CommerceWebApplication.ViewModels;
-namespace MyPortfolio.ViewModels
+﻿namespace E_CommerceWebApplication.ViewModels;
+public class EditProductViewModel:CreateProductViewModel
 {
-    public class EditProductViewModel:CreateProductViewModel
-    {
-        public string? ExistsPhotoPath { get; set; }
-    }
+    public string? ExistsPhotoPath { get; set; }
 }
