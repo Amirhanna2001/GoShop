@@ -8,7 +8,7 @@ public class CategoryController : Controller
 {
     private readonly IHostingEnvironment _hostingEnvironment;
     private readonly ICategoryServices _categoryServices;
-    public static readonly string CategoryPhotoRootPath = "~/Images/Category/";
+    public static readonly string CategoryPhotoRootPath = "Images/Category/";
 
     public CategoryController(ICategoryServices categoryServices, IHostingEnvironment hostingEnvironment)
     {

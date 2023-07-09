@@ -55,7 +55,7 @@ public class ProductController : Controller
             ID = cat.ID,
             Name = cat.Name,
             Description = cat.Description,
-            ExistsPhotoPath = ProductPhotoRootPath + cat.ImageURL,
+            ExistsPhotoPath = ProductPhotoRootPath +'/'+ cat.ImageURL,
         };
         viewModel.Categories = await _categoryServices.GetAll();
         return View(viewModel);

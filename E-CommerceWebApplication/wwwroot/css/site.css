@@ -20,3 +20,37 @@ html {
 body {
   margin-bottom: 60px;
 }
+/*-----------------------------Custom Style-------------------------------*/
+.zoom-effect {
+    overflow: hidden;
+}
+
+.zoom-out {
+    transition: transform 0.3s ease-in-out;
+}
+
+.zoom-out:hover {
+    transform: scale(1.2);
+}
+h2 {
+    text-align: center;
+    color: #337ab7;
+    margin-top: 30px;
+}
+.zoom-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.zoom-out {
+    transition: transform 0.3s ease;
+}
+
+.zoom-effect:hover .zoom-out {
+    transform: scale(1.1);
+}
+.navbar {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
