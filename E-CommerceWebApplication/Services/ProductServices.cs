@@ -32,7 +32,7 @@ public class ProductServices : IServicesType<Product>
     
 
     public async Task<List<Product>> GetAll()
-        => await _context.Products.ToListAsync();
+        => await _context.Products.Include(p=>p.Category).ToListAsync();
     
 
     public Product Update(Product product)

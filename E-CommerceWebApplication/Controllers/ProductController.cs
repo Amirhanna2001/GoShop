@@ -10,14 +10,14 @@ public class ProductController : Controller
     private readonly IHostingEnvironment _hostingEnvironment;
     private readonly IServicesType<Product> _productServices;
     private readonly ICategoryServices _categoryServices;
-    public static readonly string ProductPhotoRootPath = "~/Images/Product/";
+    public static readonly string ProductPhotoRootPath = "/Images/Product";
 
     public ProductController(
-        IServicesType<Product> projectServices,
+        IServicesType<Product> productServices,
         ICategoryServices categoryServices,
         IHostingEnvironment hostingEnvironment)
     {
-        _productServices = projectServices;
+        _productServices = productServices;
         _categoryServices = categoryServices;
         _hostingEnvironment = hostingEnvironment;
     }
@@ -35,7 +35,7 @@ public class ProductController : Controller
             ID = product.ID,
             Name = product.Name,
             Description = product.Description,
-            ImageURL = ProductPhotoRootPath + product.ImageURL,
+            ImageURL = ProductPhotoRootPath +'/'+ product.ImageURL,
         };
 
         Category cat = await _categoryServices.Get(product.CategoryID);
@@ -113,16 +113,19 @@ public class ProductController : Controller
         if (!files.Any())
         {
             ModelState.AddModelError("Image", "Image is required");
+            viewModel.Categories = await _categoryServices.GetAll();
             return View(viewModel);
         }
 
         if (!Helper.ImageValidation.IsSizeValid(viewModel.Image))
         {
             ModelState.AddModelError("Image", "Max Allowed Poster Size Is 2MB");
+            viewModel.Categories = await _categoryServices.GetAll();
             return View(viewModel);
         }
         if (!Helper.ImageValidation.IsValidExtensions(viewModel.Image))
         {
+            viewModel.Categories = await _categoryServices.GetAll();
             ModelState.AddModelError("Image", "Only JPG & PNG Extensions Allowed");
             return View(viewModel);
         }
@@ -136,7 +139,7 @@ public class ProductController : Controller
         };
         product.ImageURL = ProcessUploadedFile(viewModel);
 
-        _productServices.Create(product);
+        await _productServices.Create(product);
         return RedirectToAction(nameof(Index));
     }
 
@@ -147,7 +150,7 @@ public class ProductController : Controller
         if (product == null)
             return RedirectToAction(nameof(Index));
 
-        product.ImageURL = Path.Combine(_hostingEnvironment.WebRootPath, "Images", "Project", product.ImageURL);
+        product.ImageURL = Path.Combine(_hostingEnvironment.WebRootPath, "Images", "Product", product.ImageURL);
         _productServices.Delete(product);
 
         return RedirectToAction(nameof(Index));
@@ -160,7 +163,7 @@ public class ProductController : Controller
         if (model.Image != null)
         {
 
-            string uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "Images", "Project");
+            string uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "Images", "Product");
             uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Image.FileName;
             string filePath = Path.Combine(uploadsFolder, uniqueFileName);
             using (var fileStream = new FileStream(filePath, FileMode.Create))
