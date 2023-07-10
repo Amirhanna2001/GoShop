@@ -2,7 +2,6 @@
 
 @{
     ViewData["title"] = "Product Details";
-    //string image = ProductController.ProductPhotoRootPath + Model.ImageURL;
 }
 <div>
     
@@ -11,12 +10,8 @@
     </div>
     <div class="card-body text-center">
         <img class="card-icon" src="@Model.ImageURL" asp-append-version="true" style="width:30em;height:20em;" />
-
-
-        <h4>
-            Date: @Model.CreatedOn.ToString("dd/MM/yyyy")<h4>
-            Date: @Model.CreatedOn.ToString("dd/MM/yyyy")<h4>
-        <h4>@Model.Description<h4> 
+        <h3 style="font:bold">@Model.Price LE</h3>
+        <h4>@Model.Description</h4> 
 
     </div>
     <div class="card-footer text-center justify-content-between">

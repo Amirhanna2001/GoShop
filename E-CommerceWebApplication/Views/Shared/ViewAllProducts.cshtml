@@ -2,8 +2,17 @@
 @{
     string image = "";
     ViewData["Title"] = "All Products";
+    string msg = "";
+    if (ViewData["Products"] != null)
+    {
+        msg = "Of " + ViewData["Products"]+" Category";
+    }
 }
-<h2>All Products</h2>
+<h2>All Products @msg
+    
+</h2>
+
+<hr />
 <a class="btn btn-outline-primary" asp-action="Create" asp-controller="Product">Add Product</a>
 
 <div class="mt-4">
@@ -16,27 +25,29 @@
 
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                     <div class="card">
-                        <img src="@image" class="card-img-top zoom-out zoom-effect" alt="@product.Name" style="object-fit: cover; height: 300px;">
+                        <a asp-action="Details" asp-route-id="@product.ID" asp-controller="Product">
+                        <img src="@image" class="card-img-top zoom-out zoom-effect" alt="@product.Name" style="object-fit: cover; height: 300px;"></a>
                         <div class="card-body">
                             <h5 class="card-title">@product.Name</h5>
-                            <p class="card-text">@product.Category.Name</p>
+                            <h5 class="card-title">@product.Price EGP</h5>
+                            <p class="card-text">Type : @product.Category.Name</p>
                             <p class="card-text text-justify">
                                 @(product.Description.Length > 500 ? $"{product.Description.Substring(0, 500)}..." : product.Description)
                             </p>
                         </div>
                         <div class="card-footer">
                             <div class="d-flex justify-content-between">
-                                <a asp-action="Details" asp-route-id="@product.ID" class="btn btn-outline-secondary">
+                                <a asp-action="Details" asp-controller="Product" asp-route-id="@product.ID" class="btn btn-outline-secondary">
                                     <i class="bi bi-ticket-detailed"></i>
                                     Details
                                 </a>
-                                <a asp-action="Edit" asp-route-id="@product.ID" class="btn btn-outline-primary">
+                                <a asp-action="Edit" asp-controller="Product" asp-route-id="@product.ID" class="btn btn-outline-primary">
                                     <i class="bi bi-pencil"></i>
                                     Edit
                                 </a>
                                 <a onclick="return confirm('Are you sure you want to delete the product @product.Name?')"
                                    class="btn btn-outline-danger"
-                                   asp-action="Delete" asp-route-id="@product.ID">
+                                   asp-action="Delete" asp-controller="Product" asp-route-id="@product.ID">
                                     <i class="bi bi-trash"></i>
                                     Delete
                                 </a>

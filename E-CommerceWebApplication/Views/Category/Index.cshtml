@@ -19,10 +19,9 @@
             imagePath = CategoryController.CategoryPhotoRootPath + category.ImageURL;
             <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                 <div class="card">
-                    <div class="zoom-effect" >
-                        <a asp-action="Details" asp-route-id="@category.Id">
+                    <div class="zoom-effect">
+                        <a asp-action="ViewAllProducts" asp-route-id="@category.Id">
                             <img class="card-img-top zoom-out" src="@imagePath" alt="@category.Name">
-                        
                         </a>
                     </div>
                     <div class="card-body">
@@ -32,12 +31,19 @@
                     <div class="card-footer">
                         <div class="d-flex justify-content-between">
                             <a asp-action="Details" asp-route-id="@category.Id" class="btn btn-outline-secondary">Details</a>
-                            <a asp-action="ViewAllProducts" asp-route-id="@category.Id" class="btn btn-outline-secondary">View All</a>
-                            @if (User.IsInRole("Admin"))
-                            {
-                                <a asp-action="Edit" asp-route-id="@category.Id" class="btn btn-outline-secondary">Edit</a>
-                                <a asp-action="Delete" onclick="return confirm('Are you sure you want to delete @category.Name?')" class="btn btn-danger" asp-route-id="@category.Id">Delete</a>
-                            }
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Actions
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" asp-action="ViewAllProducts" asp-route-id="@category.Id">View All</a>
+                                    @*@if (User.IsInRole("Admin"))
+                                    {*@
+                                        <a class="dropdown-item" asp-action="Edit" asp-route-id="@category.Id">Edit</a>
+                                        <a class="dropdown-item" asp-action="Delete" onclick="return confirm('Are you sure you want to delete @category.Name?')" asp-route-id="@category.Id">Delete</a>
+                                    @*}*@
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -136,7 +136,8 @@ public class CategoryController : Controller
 
     public async Task<IActionResult> ViewAllProducts(int id)
     {
-
+        Category category = await _categoryServices.Get(id);
+        ViewData["Products"] = category.Name;
         return View(await _categoryServices.GetProducts(id));
     }
 

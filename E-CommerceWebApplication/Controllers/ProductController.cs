@@ -36,6 +36,7 @@ public class ProductController : Controller
             Name = product.Name,
             Description = product.Description,
             ImageURL = ProductPhotoRootPath +'/'+ product.ImageURL,
+            Price = product.Price
         };
 
         Category cat = await _categoryServices.Get(product.CategoryID);
@@ -55,6 +56,7 @@ public class ProductController : Controller
             ID = cat.ID,
             Name = cat.Name,
             Description = cat.Description,
+            Price = cat.Price,
             ExistsPhotoPath = ProductPhotoRootPath +'/'+ cat.ImageURL,
         };
         viewModel.Categories = await _categoryServices.GetAll();
@@ -81,7 +83,7 @@ public class ProductController : Controller
             }
             if (!Helper.ImageValidation.IsValidExtensions(viewModel.Image))
             {
-                ModelState.AddModelError("Image", "Only JPG & PNG Extensions Allowed");
+                ModelState.AddModelError("Image", "Only .JPG & .PNG Extensions Allowed");
                 return View(viewModel);
             }
 
@@ -96,6 +98,7 @@ public class ProductController : Controller
         }
         product.Description = viewModel.Description;
         product.Name = viewModel.Name;
+        product.Price = viewModel.Price;
         _productServices.Update(product);
         return RedirectToAction(nameof(Index));
     }
@@ -135,6 +138,7 @@ public class ProductController : Controller
             Name = viewModel.Name,
             Description = viewModel.Description,
             CategoryID = viewModel.CategoryId,
+            Price = viewModel.Price
 
         };
         product.ImageURL = ProcessUploadedFile(viewModel);
