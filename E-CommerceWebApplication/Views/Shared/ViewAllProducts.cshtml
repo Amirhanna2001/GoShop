@@ -4,7 +4,7 @@
     ViewData["Title"] = "All Products";
 }
 <h2>All Products</h2>
-<a class="btn btn-primary" asp-action="Create">Add Product</a>
+<a class="btn btn-outline-primary" asp-action="Create" asp-controller="Product">Add Product</a>
 
 <div class="mt-4">
     @if (Model.Any())
@@ -16,9 +16,7 @@
 
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                     <div class="card">
-                        <div class="zoom-effect">
-                            <img src="@image" class="card-img-top zoom-out" alt="@product.Name">
-                        </div>
+                        <img src="@image" class="card-img-top zoom-out zoom-effect" alt="@product.Name" style="object-fit: cover; height: 300px;">
                         <div class="card-body">
                             <h5 class="card-title">@product.Name</h5>
                             <p class="card-text">@product.Category.Name</p>
@@ -54,24 +52,3 @@
         <div mt-2 class="alert alert-warning">No products yet.</div>
     }
 </div>
-
-@*<style>
-    .zoom-effect {
-        position: relative;
-        overflow: hidden;
-    }
-
-    .zoom-out {
-        transition: transform 0.3s ease;
-    }
-
-    .zoom-effect:hover .zoom-out {
-        transform: scale(1.1);
-    }
-
-    h2 {
-        text-align: center;
-        color: #337ab7;
-        margin-top: 30px;
-    }
-</style>*@

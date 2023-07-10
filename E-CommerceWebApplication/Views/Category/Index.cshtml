@@ -19,8 +19,11 @@
             imagePath = CategoryController.CategoryPhotoRootPath + category.ImageURL;
             <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                 <div class="card">
-                    <div class="zoom-effect">
-                        <img class="card-img-top zoom-out" src="@imagePath" alt="@category.Name">
+                    <div class="zoom-effect" >
+                        <a asp-action="Details" asp-route-id="@category.Id">
+                            <img class="card-img-top zoom-out" src="@imagePath" alt="@category.Name">
+                        
+                        </a>
                     </div>
                     <div class="card-body">
                         <h3 class="card-title">@category.Name</h3>

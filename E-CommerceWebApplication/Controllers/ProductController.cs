@@ -22,7 +22,7 @@ public class ProductController : Controller
         _hostingEnvironment = hostingEnvironment;
     }
     public async Task<IActionResult> Index() =>
-        View(await _productServices.GetAll());
+        View("ViewAllProducts",await _productServices.GetAll());
 
     public async Task<IActionResult> Details(int id)
     {
