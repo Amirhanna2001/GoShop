@@ -7,12 +7,6 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/E_CommerceWebApplication.styles.css" asp-append-version="true" />
-    <style>
-        .navbar {
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -38,6 +32,11 @@
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     </ul>
+                    <form class="d-flex" asp-controller="Product" asp-action="Search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searchKey">
+                        <button class="btn btn-outline-light" type="submit">Search</button>
+                    </form>
+
                     <partial name="_LoginPartial" />
                 </div>
             </div>

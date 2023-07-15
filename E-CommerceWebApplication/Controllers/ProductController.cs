@@ -23,7 +23,11 @@ public class ProductController : Controller
     }
     public async Task<IActionResult> Index() =>
         View("ViewAllProducts",await _productServices.GetAll());
-
+    public async Task<IActionResult> Search(string searchKey)
+    {
+        ViewData["Search"] = searchKey;
+        return View("ViewAllProducts",await _productServices.Search(searchKey));
+    }
     public async Task<IActionResult> Details(int id)
     {
 

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 
 namespace E_CommerceWebApplication.Services;
-public class ProductServices : IServicesType<Product>
+public class ProductServices : IServicesType<Product> 
 {
     private readonly ApplicationDbContext _context;
 
@@ -43,5 +43,13 @@ public class ProductServices : IServicesType<Product>
     }
     public async Task<List<Product>> SameCategory(int id)
         =>await _context.Products.Where(p=>p.CategoryID == id).ToListAsync();
-    
+
+    public async Task<List<Product>> Search(string key)
+    {
+        return await _context.Products
+            .Where(p => EF.Functions.Like(p.Name, $"%{key}%") || EF.Functions.Like(p.Description, $"%{key}%"))
+            .Include(p => p.Category)
+            .ToListAsync();
+    }
+
 }
