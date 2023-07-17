@@ -11,4 +11,8 @@ public class ApplicationDbContext : IdentityDbContext
     }
     public DbSet<Category> Categories { get; set; }
     public DbSet<Product> Products { get; set; }
+    public DbSet<CartItem> CartItems { get; set; }
+    public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+    public DbSet<InvoiceItem> InvoiceItems { get; set; }
+    public DbSet<Invoice> Invoice{ get; set; }
 }
