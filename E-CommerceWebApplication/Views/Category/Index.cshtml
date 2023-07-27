@@ -17,14 +17,11 @@
         @foreach (var category in Model)
         {
             imagePath = CategoryController.CategoryPhotoRootPath + category.ImageURL;
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                <div class="card">
-                    <div class="zoom-effect">
+                <div class="card col-lg-4 col-md-6 col-sm-12 mb-4">
                         <a asp-action="ViewAllProducts" asp-route-id="@category.Id">
-                            <img class="card-img-top zoom-out" src="@imagePath" alt="@category.Name">
+                            <img class="card-img zoom-out" src="@imagePath" alt="@category.Name" style="object-fit: cover; ">
                         </a>
-                    </div>
-                    <div class="card-body">
+                    <div class="card-body  ">
                         <h3 class="card-title">@category.Name</h3>
                         <p class="card-text">@category.Description</p>
                     </div>
@@ -46,8 +43,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div> 
         }
     </div>
 }
