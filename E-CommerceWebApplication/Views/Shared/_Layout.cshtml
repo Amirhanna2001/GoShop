@@ -32,6 +32,7 @@
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     </ul>
+                    @RenderSection("Sec1",false)
                     <form class="d-flex" asp-controller="Product" asp-action="Search">
                         <input class="form-control me-2" type="search" placeholder="Search about products" aria-label="Search" name="searchKey">
                         <button class="btn btn-outline-light" type="submit">Search</button>
