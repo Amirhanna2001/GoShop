@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/E_CommerceWebApplication.styles.css" asp-append-version="true" />
+    <link href="~/lib/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet" />
 </head>
 <body>
     <header>
@@ -27,9 +29,6 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Product" asp-action="Index">Products</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     </ul>
                     @RenderSection("Sec1",false)
@@ -56,8 +55,8 @@
                     <p class="text-muted mb-0">&copy; 2023 GoShop. All rights reserved For Amir Hanna.</p>
                 </div>
                 <div class="col-md-6 text-end">
-                    <a href="#" class="text-muted me-3">Terms of Service</a>
-                    <a href="#" class="text-muted">Privacy Policy</a>
+                    <a asp-action="Privacy" asp-controller="Home" class="text-muted me-3">Terms of Service</a>
+                    <a asp-action="Privacy" asp-controller="Home"  class="text-muted">Privacy Policy</a>
                 </div>
             </div>
         </div>

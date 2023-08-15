@@ -2,7 +2,42 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p></p>
+<div class="jumbotron jumbotron-fluid bg-primary text-white text-center">
+    <div class="container">
+        <h1 class="display-4">Welcome to GoShop</h1>
+        <p class="lead">Discover a world of amazing products at great prices.</p>
+        <a asp-action="Index" asp-controller="Product" class="btn btn-light btn-lg">Shop Now</a>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row m-1">
+        <div class="col-md-4">
+            <div class="card">
+               
+                <div class="card-body">
+                    <h5 class="card-title">Quality Products</h5>
+                    <p class="card-text">Explore a wide range of high-quality products that meet your needs.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                
+                <div class="card-body">
+                    <h5 class="card-title">Fast Delivery</h5>
+                    <p class="card-text">Get your orders delivered quickly and efficiently to your doorstep.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+               
+                <div class="card-body">
+                    <h5 class="card-title">24/7 Customer Support</h5>
+                    <p class="card-text">Our dedicated customer support team is available around the clock to assist you.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
