@@ -8,12 +8,12 @@ namespace E_CommerceWebApplication.Controllers;
 public class ProductController : Controller 
 {
     private readonly IHostingEnvironment _hostingEnvironment;
-    private readonly IServicesType<Product> _productServices;
+    private readonly IProductServices _productServices;
     private readonly ICategoryServices _categoryServices;
     public static readonly string ProductPhotoRootPath = "/Images/Product";
 
     public ProductController(
-        IServicesType<Product> productServices,
+        IProductServices productServices,
         ICategoryServices categoryServices,
         IHostingEnvironment hostingEnvironment)
     {
@@ -147,7 +147,7 @@ public class ProductController : Controller
         };
         product.ImageURL = ProcessUploadedFile(viewModel);
 
-        await _productServices.Create(product);
+        _productServices.Create(product);
         return RedirectToAction(nameof(Index));
     }
 
@@ -159,7 +159,8 @@ public class ProductController : Controller
             return RedirectToAction(nameof(Index));
 
         product.ImageURL = Path.Combine(_hostingEnvironment.WebRootPath, "Images", "Product", product.ImageURL);
-        _productServices.Delete(product);
+        System.IO.File.Delete(product.ImageURL);
+        _productServices.Delete(id);
 
         return RedirectToAction(nameof(Index));
 

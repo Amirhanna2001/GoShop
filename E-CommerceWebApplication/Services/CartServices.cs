@@ -2,7 +2,7 @@
 
 namespace E_CommerceWebApplication.Services;
 
-public class CartServices : IServicesType<ShoppingCart>
+public class CartServices : IServices<ShoppingCart>
 {
     public Task<ShoppingCart> Create(ShoppingCart entity)
     {
@@ -10,6 +10,11 @@ public class CartServices : IServicesType<ShoppingCart>
     }
 
     public ShoppingCart Delete(ShoppingCart entity)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Delete(int id)
     {
         throw new NotImplementedException();
     }
@@ -30,6 +35,16 @@ public class CartServices : IServicesType<ShoppingCart>
     }
 
     public ShoppingCart Update(ShoppingCart entity)
+    {
+        throw new NotImplementedException();
+    }
+
+    void IServices<ShoppingCart>.Create(ShoppingCart entity)
+    {
+        throw new NotImplementedException();
+    }
+
+    void IServices<ShoppingCart>.Update(ShoppingCart entity)
     {
         throw new NotImplementedException();
     }

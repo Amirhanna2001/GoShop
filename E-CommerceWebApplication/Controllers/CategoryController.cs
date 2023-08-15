@@ -128,7 +128,7 @@ public class CategoryController : Controller
           return RedirectToAction(nameof(Index));
 
         category.ImageURL = Path.Combine(_hostingEnvironment.WebRootPath, "Images","Category",category.ImageURL);
-        _categoryServices.Delete(category);
+        _categoryServices.Delete(id);
 
         return RedirectToAction(nameof(Index));
 
