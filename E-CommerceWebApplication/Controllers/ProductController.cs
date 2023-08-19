@@ -3,6 +3,7 @@ using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 using E_CommerceWebApplication.Models;
 using E_CommerceWebApplication.ViewModels;
 using E_CommerceWebApplication.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace E_CommerceWebApplication.Controllers;
 public class ProductController : Controller 
@@ -48,6 +49,8 @@ public class ProductController : Controller
         return View(productDetails);
     }
 
+    [Authorize(Roles ="Admin")]
+    [Authorize(Roles ="Admin")]
     public async Task<IActionResult> Edit(int id)
     {
 
@@ -67,6 +70,7 @@ public class ProductController : Controller
         return View(viewModel);
     }
     [HttpPost]
+    [Authorize(Roles ="Admin")]
     public async Task<IActionResult> Edit(EditProductViewModel viewModel)
     {
 
@@ -106,6 +110,7 @@ public class ProductController : Controller
         _productServices.Update(product);
         return RedirectToAction(nameof(Index));
     }
+    [Authorize(Roles ="Admin")]
     public async Task<IActionResult> Create()
     {
         CreateProductViewModel viewModel = new();
@@ -113,6 +118,7 @@ public class ProductController : Controller
         return View(viewModel);
     }
     [HttpPost]
+    [Authorize(Roles ="Admin")]
     public async Task<IActionResult> Create(CreateProductViewModel viewModel)
     {
 
@@ -151,6 +157,7 @@ public class ProductController : Controller
         return RedirectToAction(nameof(Index));
     }
 
+    [Authorize(Roles ="Admin")]
     public async Task<IActionResult> Delete(int id)
     {
         Product product = await _productServices.Get(id);

@@ -8,7 +8,6 @@
 {
     <a class="btn btn-primary" asp-action="Create">Add New Category</a>
 }
-<a class="btn btn-primary" asp-action="Create">Add New Category</a>
 
 <hr />
 
@@ -35,11 +34,11 @@
                                 </button>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" asp-action="ViewAllProducts" asp-route-id="@category.Id">View All</a>
-                                    @*@if (User.IsInRole("Admin"))
-                                    {*@
+                                    @if (User.IsInRole("Admin"))
+                                    {
                                         <a class="dropdown-item" asp-action="Edit" asp-route-id="@category.Id">Edit</a>
                                         <a class="dropdown-item" asp-action="Delete" onclick="return confirm('Are you sure you want to delete @category.Name?')" asp-route-id="@category.Id">Delete</a>
-                                    @*}*@
+                                    }
                                 </div>
                             </div>
                         </div>

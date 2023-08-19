@@ -1,5 +1,6 @@
 ﻿using E_CommerceWebApplication.Models;
 using E_CommerceWebApplication.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
@@ -28,7 +29,7 @@ public class CategoryController : Controller
         //cat.ImageURL = CategoryPhotoRootPath + cat.ImageURL;
         return View(cat);
     }
-
+    [Authorize(Roles ="Admin")]
     public async Task<IActionResult> Edit(int id)
     {
 
@@ -45,6 +46,7 @@ public class CategoryController : Controller
         };
         return View(viewModel);
     }
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     public async Task<IActionResult> Edit(EditCategoryViewModel viewModel)
     {
@@ -80,11 +82,13 @@ public class CategoryController : Controller
         _categoryServices.Update(category);
         return RedirectToAction(nameof(Index));
     }
+    [Authorize(Roles ="Admin")]
     public IActionResult Create()
     {
         return View();
     }
     [HttpPost]
+    [Authorize(Roles ="Admin")]
     public IActionResult Create(CategoryViewModel viewModel)
     {
         if(!ModelState.IsValid) 
@@ -120,6 +124,7 @@ public class CategoryController : Controller
         return RedirectToAction(nameof(Index));
     }
 
+    [Authorize(Roles ="Admin")]
     public async Task<IActionResult> Delete(int id)
     {
         Category category = await _categoryServices.Get(id);
