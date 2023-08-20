@@ -1,8 +1,8 @@
 ﻿using E_CommerceWebApplication.Models;
 
-namespace E_CommerceWebApplication.Services;
+namespace E_CommerceWebApplication.Repository;
 
-public class CartServices : IServices<ShoppingCart>
+public class CartRepository //: IRepository<ShoppingCart>
 {
     public Task<ShoppingCart> Create(ShoppingCart entity)
     {
@@ -39,13 +39,5 @@ public class CartServices : IServices<ShoppingCart>
         throw new NotImplementedException();
     }
 
-    void IServices<ShoppingCart>.Create(ShoppingCart entity)
-    {
-        throw new NotImplementedException();
-    }
-
-    void IServices<ShoppingCart>.Update(ShoppingCart entity)
-    {
-        throw new NotImplementedException();
-    }
+    
 }

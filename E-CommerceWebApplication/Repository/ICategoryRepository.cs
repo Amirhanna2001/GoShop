@@ -1,7 +1,7 @@
 ﻿using E_CommerceWebApplication.Models;
-using E_CommerceWebApplication.Services;
+using E_CommerceWebApplication.Repository;
 
-public interface ICategoryServices:IServices<Category>
+public interface ICategoryRepository: IRepository<Category>
 {
     //Task<List<Category>> GetAll();
     //Task<Category> Create(Category entity);

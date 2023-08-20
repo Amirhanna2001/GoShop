@@ -10,21 +10,14 @@
     if (ViewData["Search"] != null)
     {
         msg = "Of " + ViewData["Search"] + " Key";
-
     }
 }
-<h2>
-    All Products @msg
-
-</h2>
-
+<h2>All Products @msg</h2>
 <hr />
 @if (User.IsInRole("Admin"))
 {
     <a class="btn btn-outline-primary" asp-action="Create" asp-controller="Product">Add Product</a>
 }
-
-
 <div class="mt-4">
     @if (Model.Any())
     {
@@ -33,15 +26,15 @@
             {
                 image = ProductController.ProductPhotoRootPath + "/" + product.ImageURL;
 
-                @*<div class="col-lg-4 col-md-6 col-sm-12 mb-4">*@
-                    <div class="card col-lg-4 col-md-6 col-sm-12 ">
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                    <div class="card">
                         <a asp-action="Details" asp-route-id="@product.ID" asp-controller="Product">
-                            <img src="@image" class="card-img zoom-out zoom-effect" alt="@product.Name" style="object-fit: cover;width:300px;height:300 ">
+                            <img src="@image" class="card-img-top zoom-out zoom-effect" alt="@product.Name" style="object-fit: cover; width: 250px; height: 250px;">
                         </a>
-                        <div class="card-body ">
+                        <div class="card-body">
                             <h5 class="card-title">@product.Name</h5>
                             <h5 class="card-title">@product.Price EGP</h5>
-                            <p class="card-text">Type : @product.Category.Name</p>
+                            <p class="card-text">Type: @product.Category.Name</p>
                             <p class="card-text text-justify">
                                 @(product.Description.Length > 500 ? $"{product.Description.Substring(0, 500)}..." : product.Description)
                             </p>
@@ -52,30 +45,27 @@
                                     <i class="bi bi-ticket-detailed"></i>
                                     Details
                                 </a>
-                            @if (User.IsInRole("Admin"))
-                            {
-                                <a asp-action="Edit" asp-controller="Product" asp-route-id="@product.ID" class="btn btn-outline-primary">
-                                    <i class="bi bi-pencil"></i>
-                                    Edit
-                                </a>
-                                <a onclick="return confirm('Are you sure you want to delete the product @product.Name?')"
-                                   class="btn btn-outline-danger"
-                                   asp-action="Delete" asp-controller="Product" asp-route-id="@product.ID">
-                                    <i class="bi bi-trash"></i>
-                                    Delete
-                                </a>
-                            }
-                                
-                                @*<a asp-action="AddToCart" asp-controller="Cart" asp-route-id="@product.ID" class="btn btn-outline-primary">
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <a asp-action="Edit" asp-controller="Product" asp-route-id="@product.ID" class="btn btn-outline-primary">
+                                        <i class="bi bi-pencil"></i>
+                                        Edit
+                                    </a>
+                                    <a onclick="return confirm('Are you sure you want to delete the product @product.Name?')"
+                                       class="btn btn-outline-danger"
+                                       asp-action="Delete" asp-controller="Product" asp-route-id="@product.ID">
+                                        <i class="bi bi-trash"></i>
+                                        Delete
+                                    </a>
+                                }
+                                @*<button class="btn btn-outline-primary addToCartBtn" data-product-id="@product.ID">
                                     <i class="bi bi-plus"></i>
                                     Add To Cart
-                                </a>*@
-
-                                
+                                </button>*@
                             </div>
                         </div>
                     </div>
-                @*</div>*@
+                </div>
             }
         </div>
     }
@@ -93,7 +83,7 @@
 
         function addToCart(productId) {
             $.ajax({
-                URL: '/Cart/AddToCart',
+                url: '/Cart/AddToCart', // Use lowercase 'url'
                 type: 'POST',
                 data: { productId: productId },
                 success: function () {

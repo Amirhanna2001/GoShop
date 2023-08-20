@@ -1,13 +1,13 @@
 ﻿using E_CommerceWebApplication.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace E_CommerceWebApplication.Services;
+namespace E_CommerceWebApplication.Repository;
 
-public class Services<T> : IServices<T> where T : class
+public class Repository<T> : IRepository<T> where T : class
 {
     private readonly ApplicationDbContext _context;
 
-    public Services(ApplicationDbContext context)
+    public Repository(ApplicationDbContext context)
     {
         _context = context;
     }

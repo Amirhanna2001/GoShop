@@ -2,26 +2,28 @@
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 using E_CommerceWebApplication.Models;
 using E_CommerceWebApplication.ViewModels;
-using E_CommerceWebApplication.Services;
 using Microsoft.AspNetCore.Authorization;
+using E_CommerceWebApplication.Repository;
 
 namespace E_CommerceWebApplication.Controllers;
 public class ProductController : Controller 
 {
     private readonly IHostingEnvironment _hostingEnvironment;
-    private readonly IProductServices _productServices;
-    private readonly ICategoryServices _categoryServices;
+    private readonly IProductRepository _productServices;
+    private readonly ICategoryRepository _categoryServices;
     public static readonly string ProductPhotoRootPath = "/Images/Product";
 
     public ProductController(
-        IProductServices productServices,
-        ICategoryServices categoryServices,
+        IProductRepository productServices,
+        ICategoryRepository categoryServices,
         IHostingEnvironment hostingEnvironment)
+
     {
         _productServices = productServices;
         _categoryServices = categoryServices;
         _hostingEnvironment = hostingEnvironment;
     }
+
     public async Task<IActionResult> Index() =>
         View("ViewAllProducts",await _productServices.GetAll());
     public async Task<IActionResult> Search(string searchKey)
@@ -49,7 +51,6 @@ public class ProductController : Controller
         return View(productDetails);
     }
 
-    [Authorize(Roles ="Admin")]
     [Authorize(Roles ="Admin")]
     public async Task<IActionResult> Edit(int id)
     {
@@ -175,7 +176,7 @@ public class ProductController : Controller
 
     private string ProcessUploadedFile(CreateProductViewModel model)
     {
-        string uniqueFileName = null;
+        string uniqueFileName = string.Empty;
         if (model.Image != null)
         {
 

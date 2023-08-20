@@ -1,6 +1,6 @@
-﻿namespace E_CommerceWebApplication.Services;
+﻿namespace E_CommerceWebApplication.Repository;
 
-public interface IServices<T>
+public interface IRepository<T>
 {
     Task<List<T>> GetAll();
     //Task<List<T>> Search(string key);
