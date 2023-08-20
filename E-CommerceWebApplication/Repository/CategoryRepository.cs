@@ -12,7 +12,10 @@ public class CategoryRepository : Repository<Category>, ICategoryRepository
         _context = context;
     }
 
-    public async Task<List<Product>> GetProducts(int id)=>await _context.Products.Where(p=>p.CategoryID == id).ToListAsync();
+    public Category Get(string name) => _context.Categories.Where(c=> c.Name == name).FirstOrDefault();
+    
+
+    public async Task<List<Product>> GetProducts(int id)=> await _context.Products.Where(p=>p.CategoryID == id).ToListAsync();
 
 
 }
